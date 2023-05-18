@@ -33,7 +33,7 @@ struct ParameterConfiguration {
 
 /** Тип параметра, позволяет производить простую валидацию данных на клиенте **/
 enum ParameterType {
-    boolean
+    bl
     integer
     fl
     str
@@ -54,7 +54,7 @@ struct ParameterInfo {
 
 /** Значение параметра **/
 union ParameterValue {
-    1: bool boolean
+    1: bool bl
     2: i64 integer
     3: double fl
     4: string str
