@@ -33,9 +33,9 @@ struct ParameterConfiguration {
 
 /** Тип параметра, позволяет производить простую валидацию данных на клиенте **/
 enum ParameterType {
-    boolean,
-    integer,
-    double,
+    boolean
+    integer
+    double
     string
 }
 
