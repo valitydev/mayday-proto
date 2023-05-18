@@ -33,10 +33,10 @@ struct ParameterConfiguration {
 
 /** Тип параметра, позволяет производить простую валидацию данных на клиенте **/
 enum ParameterType {
-    BOOLEAN
-    INTEGER
-    DOUBLE
-    STRING
+    boolean
+    integer
+    float
+    str
 }
 
 /** Заполненная конфигурация алерта */
@@ -57,7 +57,7 @@ union ParameterValue {
     1: bool boolean
     2: i64 integer
     3: double float
-    4: string string
+    4: string str
 }
 
 exception UserNotFound {}
