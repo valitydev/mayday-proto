@@ -35,7 +35,7 @@ struct ParameterConfiguration {
 enum ParameterType {
     boolean
     integer
-    float
+    fl
     str
 }
 
@@ -56,7 +56,7 @@ struct ParameterInfo {
 union ParameterValue {
     1: bool boolean
     2: i64 integer
-    3: double float
+    3: double fl
     4: string str
 }
 
