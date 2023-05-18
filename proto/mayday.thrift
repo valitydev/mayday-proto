@@ -33,10 +33,10 @@ struct ParameterConfiguration {
 
 /** Тип параметра, позволяет производить простую валидацию данных на клиенте **/
 enum ParameterType {
-    boolean
-    integer
-    double
-    string
+    BOOLEAN
+    INTEGER
+    DOUBLE
+    STRING
 }
 
 /** Заполненная конфигурация алерта */
