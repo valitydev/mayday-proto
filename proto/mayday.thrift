@@ -1,6 +1,6 @@
 namespace java dev.vality.alerting.mayday
 
-/** Идентификатор */
+/** Идентификатор **/
 typedef string ID
 
 /** Информация об алерте конкретного пользователя */
