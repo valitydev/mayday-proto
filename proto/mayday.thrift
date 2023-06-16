@@ -29,7 +29,6 @@ struct ParameterConfiguration {
     /** Человекочитаемое название параметра (можно отдавать пользователю)**/
     2: required string name
     3: required ParameterType type 
-    4: optional list<string> supported_values
 }
 
 /** Тип параметра, позволяет производить простую валидацию данных на клиенте **/
