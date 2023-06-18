@@ -12,14 +12,14 @@ struct UserAlert {
 
 /** Общая информация о шаблоне алерта, который доступен для создания **/
 struct Alert {
-    1: required ID alert
+    1: required ID id
     /** Человекочитаемое название шаблона (можно отдавать пользователю) **/
     2: required string name
 }
 
 /** Подробная конфигурация алерта, которую необходимо заполнить для создания алерта **/
 struct AlertConfiguration {
-    1: required ID alert_id
+    1: required ID id
     2: required list<ParameterConfiguration> parameters
 }
 
@@ -48,7 +48,7 @@ struct CreateAlertRequest {
 
 /** Заполненная информация о параметре **/
 struct ParameterInfo {
-    1: required ID parameter_id
+    1: required ID id
     2: required ParameterValue type 
 }
 
@@ -76,7 +76,7 @@ service AlertingService {
     void DeleteAllAlerts (1: ID user_id) throws (1: UserNotFound ex);
 
     /** Удалить определенный алерт пользователя **/
-    void DeleteAlert (1: ID user_alert_id) throws (1: AlertNotFound ex);
+    void DeleteAlert (1: ID user_id, 2: ID user_alert_id) throws (1: AlertNotFound ex);
 
     /** Получить список активных алертов пользователя **/
     list<UserAlert> GetUserAlerts (1: ID user_id) throws (1: UserNotFound ex);
