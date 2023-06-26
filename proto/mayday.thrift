@@ -26,17 +26,14 @@ struct AlertConfiguration {
 /** Параметр, который необходимо передать для создания алерта **/
 struct ParameterConfiguration {
     1: required ID id
-    /** Человекочитаемое название параметра (можно отдавать пользователю)**/
+    /** Человекочитаемое название параметра (можно отдавать пользователю) **/
     2: required string name
-    3: required ParameterType type 
-}
-
-/** Тип параметра, позволяет производить простую валидацию данных на клиенте **/
-enum ParameterType {
-    bl
-    integer
-    fl
-    str
+    /** Если параметр необязательный, пользователь может ничего не вводить и в таком случае информацию о вводе можно не передавать в mayday **/
+    3: required bool mandatory
+    /** Допустимые варианты значений, из которых должен выбирать пользователь **/
+    4: optional list<string> options
+    /** Регулярное выражение, с помощью которго можно провалидировать ввод пользователя **/
+    5: optional string value_regexp
 }
 
 /** Заполненная конфигурация алерта */
@@ -49,15 +46,7 @@ struct CreateAlertRequest {
 /** Заполненная информация о параметре **/
 struct ParameterInfo {
     1: required ID id
-    2: required ParameterValue type 
-}
-
-/** Значение параметра **/
-union ParameterValue {
-    1: bool bl
-    2: i64 integer
-    3: double fl
-    4: string str
+    2: required string value 
 }
 
 exception UserNotFound {}
