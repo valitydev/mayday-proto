@@ -34,6 +34,8 @@ struct ParameterConfiguration {
     4: optional list<string> options
     /** Регулярное выражение, с помощью которго можно провалидировать ввод пользователя **/
     5: optional string value_regexp
+    /** Параметр может иметь несколько значений **/
+    6: required bool multiple_values
 }
 
 /** Заполненная конфигурация алерта */
