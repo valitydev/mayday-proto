@@ -20,7 +20,8 @@ struct Alert {
 /** Подробная конфигурация алерта, которую необходимо заполнить для создания алерта **/
 struct AlertConfiguration {
     1: required ID id
-    2: required list<ParameterConfiguration> parameters
+    2: required string name
+    3: required list<ParameterConfiguration> parameters
 }
 
 /** Параметр, который необходимо передать для создания алерта **/
@@ -36,6 +37,17 @@ struct ParameterConfiguration {
     5: optional string value_regexp
     /** Параметр может иметь несколько значений **/
     6: required bool multiple_values
+}
+
+/** Запрос на удаление определенного алерта пользователя */
+struct DeleteAlertRequest {
+    1: required ID user_id
+    2: required ID user_alert_id
+}
+
+/** Запрос на получение списка активных алертов пользователя */
+struct GetUserAlertsRequest {
+    1: required ID user_id
 }
 
 /** Заполненная конфигурация алерта */
@@ -63,20 +75,14 @@ exception InvalidParameterFormat {}
 */
 service AlertingService {
 
-     /** Удалить все алерты пользователя **/
-    void DeleteAllAlerts (1: ID user_id) throws (1: UserNotFound ex);
-
     /** Удалить определенный алерт пользователя **/
-    void DeleteAlert (1: ID user_id, 2: ID user_alert_id) throws (1: AlertNotFound ex);
+    void DeleteAlert (1: DeleteAlertRequest delete_alert_request) throws (1: AlertNotFound ex);
 
     /** Получить список активных алертов пользователя **/
-    list<UserAlert> GetUserAlerts (1: ID user_id) throws (1: UserNotFound ex);
+    list<UserAlert> GetUserAlerts (1: GetUserAlertsRequest get_user_alerts_request) throws (1: UserNotFound ex);
 
-    /** Получить список доступных для создания алертов **/
-    list<Alert> GetSupportedAlerts ();
-
-    /** Получить расширенную конфигурацию алерта **/
-    AlertConfiguration GetAlertConfiguration (1: ID alert_id) throws (1: AlertNotFound ex);
+    /** Получить расширенные конфигурации всех доступных алертов **/
+    list<AlertConfiguration> GetAlertConfigurationsList ();
 
     /** Создать алерт для пользователя **/
     void CreateAlert (1: CreateAlertRequest create_alert_request) throws (1: AlertNotFound ex1, 2: UserNotFound ex2, 3: InvalidParameterFormat ex3);
